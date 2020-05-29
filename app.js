@@ -101,11 +101,11 @@ const checkForOther = (employee) => {
         }
     ]).then(res => {
         if(employee.role === "Manager") {
-            employees.push(new Manager(employee.name, employee.id, employee.email, employee.role, employee.officeNum));
-        } else if(employee.role === "Engineer") {
-            employees.push(new Engineer(employee.name, employee.id, employee.email, employee.role, employee.gitHubUser));
+            employees.push(new Manager(employee.name, employee.id, employee.email, employee.officeNum));
+        } else if(e === "Engineer") {
+            employees.push(new Engineer(employee.name, employee.id, employee.email, employee.gitHubUser));
         } else if(employee.role === "Intern") {
-            employees.push(new Intern(employee.name, employee.id, employee.email, employee.role, employee.gitHubUser));
+            employees.push(new Intern(employee.name, employee.id, employee.email, employee.gitHubUser));
         }
         if(res.anotherEmployee) {
             inquirerEmployee();
