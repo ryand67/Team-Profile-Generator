@@ -10,7 +10,98 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+//Finds general info, and then passes the object into more specific info grabbing functions
+const inquirerEmployee = () => {
+    inquirer.prompt([
+        {
+            type: 'list',
+            message: 'What is this employee\'s role?',
+            choices: ['Manager', 'Engineer', 'Intern'],
+            name: 'role'
+        },
+        {
+            type: 'input',
+            message: 'Name:',
+            name: 'name'
+        },
+        {
+            type: 'input',
+            message: 'ID:',
+            name: 'employeeID'
+        },
+        {
+            type: 'input',
+            message: 'Email:',
+            name: 'emailAddress'
+        }
+    ]).then((res) => {
+        res.name = res.name.charAt(0).toUpperCase() + res.name.substr(1);
+        //Find role specific information
+        if(res.role === 'Manager') {
+            getOfficeNumber(res);
+        } else if (res.role === "Engineer") {
+            getGitHub(res);
+        } else if(res.role === "Intern") {
+            getSchool(res);
+        }
+    });
+}
 
+const getOfficeNumber = (manager) => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'Office Number:',
+            name: 'officeNum'
+        }
+    ]).then(res => {
+        //Set property and check for another employee
+        manager.officeNum = res.officeNum;
+        checkForOther(manager);
+    })
+}
+
+const getGitHub = (engineer) => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'GitHub Username:',
+            name: 'gitHubUser'
+        }
+    ]).then(res => {
+        //Set property and check for another employee
+        engineer.gitHubUser = res.gitHubUser;
+        checkForOther(engineer);
+    })
+}
+
+const getSchool = (intern) => {
+    inquirer.prompt([ 
+        {
+            type: 'input',
+            message: 'School:',
+            name: 'school'
+        }
+    ]).then(res => {
+        //Set property and check for another employee
+        intern.school = res.school;
+        checkForOther(intern);
+    })
+}
+
+const checkForOther = (employee) => {
+    inquirer.prompt([
+        {
+            type: 'confirm',
+            message: 'Do you have another employee?',
+            name: 'anotherEmployee'
+        }
+    ]).then(res => {
+        console.log(employee);
+    })
+}
+
+inquirerEmployee();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
