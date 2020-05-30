@@ -102,7 +102,7 @@ const checkForOther = (employee) => {
     ]).then(res => {
         if(employee.role === "Manager") {
             employees.push(new Manager(employee.name, employee.id, employee.email, employee.officeNum));
-        } else if(e === "Engineer") {
+        } else if(employee.role === "Engineer") {
             employees.push(new Engineer(employee.name, employee.id, employee.email, employee.gitHubUser));
         } else if(employee.role === "Intern") {
             employees.push(new Intern(employee.name, employee.id, employee.email, employee.gitHubUser));
@@ -110,7 +110,15 @@ const checkForOther = (employee) => {
         if(res.anotherEmployee) {
             inquirerEmployee();
         } else {
-            
+            let renderedHTML = render(employees);
+            console.log(renderedHTML);
+            fs.writeFile(outputPath, renderedHTML, 'utf8', err => {
+                if(err) {
+                    return err;
+                } else {
+                    console.log("Write file success");
+                }
+            })
         }
     })
 }
