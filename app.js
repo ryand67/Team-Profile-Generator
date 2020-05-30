@@ -50,6 +50,7 @@ const inquirerEmployee = () => {
     });
 }
 
+//Asks for the manager's office number
 const getOfficeNumber = (manager) => {
     inquirer.prompt([
         {
@@ -64,6 +65,7 @@ const getOfficeNumber = (manager) => {
     })
 }
 
+//Asks for the engineer's github username
 const getGitHub = (engineer) => {
     inquirer.prompt([
         {
@@ -78,6 +80,7 @@ const getGitHub = (engineer) => {
     })
 }
 
+//Get intern's school
 const getSchool = (intern) => {
     inquirer.prompt([ 
         {
@@ -92,6 +95,7 @@ const getSchool = (intern) => {
     })
 }
 
+//Checks if the user has any other employees to add
 const checkForOther = (employee) => {
     inquirer.prompt([
         {
@@ -100,6 +104,7 @@ const checkForOther = (employee) => {
             name: 'anotherEmployee'
         }
     ]).then(res => {
+        //Push new objects to the employees arrays depending on role
         if(employee.role === "Manager") {
             employees.push(new Manager(employee.name, employee.id, employee.email, employee.officeNum));
         } else if(employee.role === "Engineer") {
@@ -107,6 +112,7 @@ const checkForOther = (employee) => {
         } else if(employee.role === "Intern") {
             employees.push(new Intern(employee.name, employee.id, employee.email, employee.gitHubUser));
         }
+        //If there's another employee, run the whole thing again otherwise run the render function and then write it to a different file.
         if(res.anotherEmployee) {
             inquirerEmployee();
         } else {
@@ -124,26 +130,3 @@ const checkForOther = (employee) => {
 
 //Begin app
 inquirerEmployee();
-
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
