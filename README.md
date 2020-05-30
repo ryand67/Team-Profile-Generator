@@ -13,4 +13,4 @@ Using inquirer I prompt the user for information and save them in objects with r
 Run 'npm i' in the terminal to install the needed packages.
 
 ## Usage
-Type 'node app.js' on root directory
+Type 'node app.js' on root directory in the terminal.
