@@ -111,7 +111,6 @@ const checkForOther = (employee) => {
             inquirerEmployee();
         } else {
             let renderedHTML = render(employees);
-            console.log(renderedHTML);
             fs.writeFile(outputPath, renderedHTML, 'utf8', err => {
                 if(err) {
                     return err;
