@@ -2,10 +2,6 @@
 
 This app takes user input about employees on a project team and then renders an HTML page based on the info inputted.
 
-## Deployed Application
-
-https://ryand67.github.io/Team-Profile-Generator/
-
 ### Technologies
 * Node
 * Inquirer
