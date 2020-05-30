@@ -110,7 +110,7 @@ const checkForOther = (employee) => {
         } else if(employee.role === "Engineer") {
             employees.push(new Engineer(employee.name, employee.id, employee.email, employee.gitHubUser));
         } else if(employee.role === "Intern") {
-            employees.push(new Intern(employee.name, employee.id, employee.email, employee.gitHubUser));
+            employees.push(new Intern(employee.name, employee.id, employee.email, employee.school));
         }
         //If there's another employee, run the whole thing again otherwise run the render function and then write it to a different file.
         if(res.anotherEmployee) {
